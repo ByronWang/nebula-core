@@ -8,7 +8,7 @@ import java.util.Map;
 
 import nebula.data.DataRepos;
 import nebula.data.Entity;
-import nebula.data.db.DbPersister;
+import nebula.data.schema.DbPersister;
 import nebula.lang.Field;
 import nebula.lang.NebulaNative;
 import nebula.lang.Type;

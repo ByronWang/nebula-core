@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Map;
 
 import nebula.data.SmartList;
+import nebula.data.schema.DbColumn;
+import nebula.data.schema.DbPersister;
+import nebula.data.schema.DbSqlHelper;
 import nebula.lang.Type;
 
 import org.apache.commons.logging.Log;

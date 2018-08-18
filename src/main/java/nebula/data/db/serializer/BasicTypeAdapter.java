@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.EnumMap;
 
-import nebula.data.db.FieldConverter;
+import nebula.data.schema.FieldConverter;
 import nebula.lang.RawTypes;
 
 import org.joda.time.DateTime;

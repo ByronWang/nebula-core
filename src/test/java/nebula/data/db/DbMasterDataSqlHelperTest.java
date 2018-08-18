@@ -4,6 +4,7 @@ import java.io.StringReader;
 
 import junit.framework.TestCase;
 import nebula.data.db.derby.DerbyConfiguration;
+import nebula.data.schema.DbSqlHelper;
 import nebula.lang.Type;
 import nebula.lang.TypeLoaderForTest;
 

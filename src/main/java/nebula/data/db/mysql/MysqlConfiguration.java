@@ -11,10 +11,10 @@ import org.apache.commons.logging.LogFactory;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-import nebula.data.db.DBSchema;
-import nebula.data.db.DbColumn;
 import nebula.data.db.DbConfiguration;
-import nebula.data.db.DbSqlHelper;
+import nebula.data.schema.DBSchema;
+import nebula.data.schema.DbColumn;
+import nebula.data.schema.DbSqlHelper;
 import nebula.lang.RawTypes;
 import nebula.lang.Type;
 

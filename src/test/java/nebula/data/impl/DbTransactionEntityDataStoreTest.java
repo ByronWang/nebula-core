@@ -55,14 +55,14 @@ public class DbTransactionEntityDataStoreTest extends TestCase {
 		assertEquals(1, list.size());
 		assertEquals("F_1", list.get(0).get("Name"));
 
-		order = new EditableEntity();
-		order.put("Name", "F_2");
-		store.save(order);
+		Entity order2  = new EditableEntity();
+		order2.put("Name", "F_222");
+		store.save(order2);
 
 		list = store.listAll();
 		assertEquals(2, list.size());
 		assertEquals("F_1", list.get(0).get("Name"));
-		assertEquals("F_2", list.get(1).get("Name"));
+		assertEquals("F_222", list.get(1).get("Name"));
 
 //        order = new EditableEntity();
 //        order.put("Name", "F_3");

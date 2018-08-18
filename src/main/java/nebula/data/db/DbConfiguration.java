@@ -11,6 +11,11 @@ import nebula.data.db.derby.DerbyConfiguration;
 import nebula.data.db.mysql.MysqlConfiguration;
 import nebula.data.db.oracle.OracleConfiguration;
 import nebula.data.db.postgres.PostgresConfiguration;
+import nebula.data.schema.DBSchema;
+import nebula.data.schema.DbColumn;
+import nebula.data.schema.DbPersister;
+import nebula.data.schema.DbSqlHelper;
+import nebula.data.schema.TypeNames;
 import nebula.lang.RawTypes;
 import nebula.lang.Type;
 

@@ -9,7 +9,7 @@ import nebula.data.Editable;
 import nebula.data.Entity;
 import nebula.data.TransactionCaller;
 import nebula.data.db.DbConfiguration;
-import nebula.data.db.DbPersister;
+import nebula.data.schema.DbPersister;
 import nebula.lang.Field;
 import nebula.lang.Type;
 import nebula.lang.TypeStandalone;
