@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import nebula.data.Entity;
-import nebula.data.db.RowMapper;
 import nebula.data.impl.EditableEntity;
+import nebula.data.schema.RowMapper;
 
 public class EntityFieldSerializer extends DefaultFieldSerializer<Entity> implements RowMapper<Entity> {
 

@@ -1,4 +1,4 @@
-package nebula.data.db;
+package nebula.data.schema;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

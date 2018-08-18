@@ -14,6 +14,7 @@ import com.google.common.base.Joiner;
 
 import nebula.data.schema.DbPersister;
 import nebula.data.schema.DbSqlHelper;
+import nebula.data.schema.RowMapper;
 import nebula.lang.Type;
 
 /**

@@ -15,6 +15,7 @@ import nebula.data.schema.DBSchema;
 import nebula.data.schema.DbColumn;
 import nebula.data.schema.DbPersister;
 import nebula.data.schema.DbSqlHelper;
+import nebula.data.schema.RowMapper;
 import nebula.data.schema.TypeNames;
 import nebula.lang.RawTypes;
 import nebula.lang.Type;
