@@ -8,7 +8,7 @@ import java.util.List;
 import nebula.data.Entity;
 import nebula.data.impl.EditableEntity;
 
-public class EntityListFieldSerializer extends DefaultFieldSerializer<List<Entity>> {
+public class EntityListFieldSerializer extends FieldMapperFactory<List<Entity>> {
 	final List<ListTypeAdapter<?>> adapteres;
 	final List<String> subFieldNames;
 

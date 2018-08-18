@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import nebula.data.db.serializer.BasicTypeFieldSerializer;
-import nebula.data.db.serializer.DefaultFieldSerializer;
+import nebula.data.db.serializer.FieldMapperFactory;
 import nebula.data.db.serializer.EntityFieldSerializer;
 import nebula.data.db.serializer.EntityListFieldSerializer;
 import nebula.data.db.serializer.ListTypeAdapter;
@@ -64,9 +64,9 @@ public class DbSqlHelper {
 				tableName = decodeTypeName(type.getName());
 			}
 
-			List<DefaultFieldSerializer<?>> fieldSerializer = new ArrayList<DefaultFieldSerializer<?>>();
+			List<FieldMapperFactory<?>> fieldSerializer = new ArrayList<FieldMapperFactory<?>>();
 
-			List<DefaultFieldSerializer<?>> subFieldSerializer;
+			List<FieldMapperFactory<?>> subFieldSerializer;
 
 			List<Field> fl = type.getFields();
 			ArrayList<DbColumn> listUserColumns = new ArrayList<DbColumn>();
@@ -80,7 +80,7 @@ public class DbSqlHelper {
 						fieldSerializer.add(new BasicTypeFieldSerializer(toF(of.getName()), toC(of), false, of.getType().getRawType()));
 						break;
 					case Inline: // inline object
-						subFieldSerializer = new ArrayList<DefaultFieldSerializer<?>>();
+						subFieldSerializer = new ArrayList<FieldMapperFactory<?>>();
 						for (Field in1f : of.getType().getFields()) {
 							if (in1f.isTransparent()) continue;// Skip when is
 																// Transient

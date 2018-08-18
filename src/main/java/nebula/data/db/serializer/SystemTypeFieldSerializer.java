@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import nebula.data.Entity;
 import nebula.lang.RawTypes;
 
-public class SystemTypeFieldSerializer extends DefaultFieldSerializer<Object> {
+public class SystemTypeFieldSerializer extends FieldMapperFactory<Object> {
 
 	protected final BasicTypeAdapter<?> dataDealer;
 
