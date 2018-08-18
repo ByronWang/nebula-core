@@ -14,18 +14,19 @@ import nebula.lang.RawTypes;
 
 import org.joda.time.DateTime;
 
-abstract class BasicTypeAdapter<T extends Object> implements FieldConverter<T, ResultSet, PreparedStatement> {
+abstract class JavaJdbcMapper<T extends Object> implements FieldConverter<T, ResultSet, PreparedStatement> {
 	public T readFrom(ResultSet in, String name) throws Exception {
 		throw new UnsupportedOperationException("readFrom(ResultSet in, String name)");
 	}
 
 	public void writeTo(String name, Object value, PreparedStatement gen) throws Exception {
+
 		throw new UnsupportedOperationException("writeTo(int index,T value)");
 	}
 
-	private final static EnumMap<RawTypes, BasicTypeAdapter<?>> typeMaps;
+	private final static EnumMap<RawTypes, JavaJdbcMapper<?>> typeMaps;
 	static {
-		typeMaps = new EnumMap<RawTypes, BasicTypeAdapter<?>>(RawTypes.class);
+		typeMaps = new EnumMap<RawTypes, JavaJdbcMapper<?>>(RawTypes.class);
 		typeMaps.put(RawTypes.Boolean, new DbBooleanTypeAdapter());
 		typeMaps.put(RawTypes.Long, new DbLong_BigInt_TypeAdapter());
 		typeMaps.put(RawTypes.Decimal, new DbDecimalDealer());
@@ -37,12 +38,12 @@ abstract class BasicTypeAdapter<T extends Object> implements FieldConverter<T, R
 		typeMaps.put(RawTypes.Timestamp, new DbTimestampTypeAdapter());
 	}
 
-	public static BasicTypeAdapter<?> getAdapter(RawTypes rawType) {
+	public static JavaJdbcMapper<?> getAdapter(RawTypes rawType) {
 		return typeMaps.get(rawType);
 	}
 }
 
-class DbBooleanTypeAdapter extends BasicTypeAdapter<Boolean> {
+class DbBooleanTypeAdapter extends JavaJdbcMapper<Boolean> {
 	@Override
 	public Boolean readFrom(ResultSet res, int index) throws Exception {
 		Boolean value = res.getBoolean(index);
@@ -55,7 +56,7 @@ class DbBooleanTypeAdapter extends BasicTypeAdapter<Boolean> {
 	}
 }
 
-class DbLong_BigInt_TypeAdapter extends BasicTypeAdapter<Long> {
+class DbLong_BigInt_TypeAdapter extends JavaJdbcMapper<Long> {
 	@Override
 	public Long readFrom(ResultSet res, int i) throws Exception {
 		Long value = res.getLong(i);
@@ -69,7 +70,7 @@ class DbLong_BigInt_TypeAdapter extends BasicTypeAdapter<Long> {
 	}
 }
 
-class DbDecimalDealer extends BasicTypeAdapter<BigDecimal> {
+class DbDecimalDealer extends JavaJdbcMapper<BigDecimal> {
 	@Override
 	public BigDecimal readFrom(ResultSet res, int i) throws Exception {
 		BigDecimal value = res.getBigDecimal(i);
@@ -82,7 +83,7 @@ class DbDecimalDealer extends BasicTypeAdapter<BigDecimal> {
 	}
 }
 
-class DbTextBlock_Varchar_TypeAdapter extends BasicTypeAdapter<String> {
+class DbTextBlock_Varchar_TypeAdapter extends JavaJdbcMapper<String> {
 	@Override
 	public String readFrom(ResultSet res, int i) throws Exception {
 		String value = res.getString(i);
@@ -95,7 +96,7 @@ class DbTextBlock_Varchar_TypeAdapter extends BasicTypeAdapter<String> {
 	}
 }
 
-class DbString_Varchar_TypeAdapter extends BasicTypeAdapter<String> {
+class DbString_Varchar_TypeAdapter extends JavaJdbcMapper<String> {
 	@Override
 	public String readFrom(ResultSet res, int i) throws Exception {
 		String value = res.getString(i);
@@ -108,7 +109,7 @@ class DbString_Varchar_TypeAdapter extends BasicTypeAdapter<String> {
 	}
 }
 
-class DbDateTypeAdapter extends BasicTypeAdapter<DateTime> {
+class DbDateTypeAdapter extends JavaJdbcMapper<DateTime> {
 	@Override
 	public DateTime readFrom(ResultSet res, int i) throws Exception {
 		Date t = res.getDate(i);
@@ -121,7 +122,7 @@ class DbDateTypeAdapter extends BasicTypeAdapter<DateTime> {
 	}
 }
 
-class DbTimeTypeAdapter extends BasicTypeAdapter<DateTime> {
+class DbTimeTypeAdapter extends JavaJdbcMapper<DateTime> {
 	@Override
 	public DateTime readFrom(ResultSet res, int i) throws Exception {
 		Time t = res.getTime(i);
@@ -134,7 +135,7 @@ class DbTimeTypeAdapter extends BasicTypeAdapter<DateTime> {
 	}
 }
 
-class DbDatetimeTypeAdapter extends BasicTypeAdapter<DateTime> {
+class DbDatetimeTypeAdapter extends JavaJdbcMapper<DateTime> {
 	@Override
 	public DateTime readFrom(ResultSet res, int i) throws Exception {
 		Timestamp t = res.getTimestamp(i);
@@ -147,7 +148,7 @@ class DbDatetimeTypeAdapter extends BasicTypeAdapter<DateTime> {
 	}
 }
 
-class DbTimestampTypeAdapter extends BasicTypeAdapter<Long> {
+class DbTimestampTypeAdapter extends JavaJdbcMapper<Long> {
 	@Override
 	public Long readFrom(ResultSet res, int i) throws Exception {
 		Timestamp t = res.getTimestamp(i);

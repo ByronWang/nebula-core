@@ -8,13 +8,13 @@ import nebula.lang.RawTypes;
 
 public class BasicTypeFieldSerializer extends FieldMapperFactory<Object> {
 
-	protected final BasicTypeAdapter<?> dataDealer;
+	protected final JavaJdbcMapper<?> dataDealer;
 
 	public BasicTypeFieldSerializer(String fieldName, String columnName, boolean array, RawTypes rawType) {
 		super(fieldName, columnName);
 		if (array) dataDealer = ListTypeAdapter.getAdapter(rawType);
-		else dataDealer = BasicTypeAdapter.getAdapter(rawType);
-
+		else
+			dataDealer = JavaJdbcMapper.getAdapter(rawType);
 	}
 
 	@Override

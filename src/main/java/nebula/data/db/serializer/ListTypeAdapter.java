@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 
 import nebula.lang.RawTypes;
 
-public abstract class ListTypeAdapter<T> extends BasicTypeAdapter<List<T>> {
+public abstract class ListTypeAdapter<T> extends JavaJdbcMapper<List<T>> {
 
 	private static EnumMap<RawTypes, ListTypeAdapter<?>> typeMaps = new EnumMap<RawTypes, ListTypeAdapter<?>>(RawTypes.class);
 	static {
