@@ -23,13 +23,11 @@ import nebula.data.schema.DbSqlHelper;
 public class DBSchemaMerger {
 	static final Log logroot = LogFactory.getLog(DBSchemaMerger.class);
 
-	public static void ensureDBSchema(DbConfiguration dbconfig, DbSqlHelper helper) {
+	public static void ensureDBSchema(Connection conn, DbSqlHelper helper) {
 		Statement statement = null;
 		boolean exist = false;
 		ResultSet rs = null;
-		Connection conn = null;
 		try {
-			conn = dbconfig.openConnection();
 
 			final SmartList<String, DbColumn> mapColumns = new SmartList<String, DbColumn>(
 					new Function<DbColumn, String>() {
@@ -81,6 +79,7 @@ public class DBSchemaMerger {
 						}
 					} else {
 						int size = metaData.getColumnDisplaySize(i);
+						@SuppressWarnings("unused")
 						int nullable = metaData.isNullable(i);
 						int precision = metaData.getPrecision(i);
 						int scale = metaData.getScale(i);
@@ -214,6 +213,7 @@ public class DBSchemaMerger {
 							}
 							rs.close();
 						}
+						
 					}
 
 					// update changed column define to DB
@@ -314,7 +314,6 @@ public class DBSchemaMerger {
 				if (rs != null) {
 					rs.close();
 				}
-				dbconfig.closeConnection(conn);
 			} catch (SQLException e) {
 			}
 		}

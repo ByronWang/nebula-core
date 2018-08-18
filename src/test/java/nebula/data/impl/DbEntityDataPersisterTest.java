@@ -83,34 +83,34 @@ public class DbEntityDataPersisterTest extends TestCase {
 				v.put("Height", 120L);
 
 				assertEquals(true, v.isDirty());
-				assertEquals(120L, v.get("Height"));
+				assertEquals(120L, v.getLong("Height").longValue());
 				assertEquals(null, store.get("wangshilian").get("Height"));
 
 				session.add(store, v);
 				session.flush();
 
 				assertEquals(false, v.isDirty());
-				assertEquals(120L, v.get("Height"));
-				assertEquals(120L, store.get("wangshilian").get("Height"));
+				assertEquals(120L, v.getLong("Height").longValue());
+				assertEquals(120L, store.get("wangshilian").getLong("Height").longValue());
 
 				v.put("Height", 180L);
 
 				assertEquals(true, v.isDirty());
-				assertEquals(180L, v.get("Height"));
-				assertEquals(120L, store.get("wangshilian").get("Height"));
+				assertEquals(180L, v.getLong("Height").longValue());
+				assertEquals(120L, store.get("wangshilian").getLong("Height").longValue());
 
 				session.clearChanges();
 				session.flush();
 
 				assertEquals(true, v.isDirty());
-				assertEquals(180L, v.get("Height"));
-				assertEquals(120L, store.get("wangshilian").get("Height"));
+				assertEquals(180L, v.getLong("Height").longValue());
+				assertEquals(120L, store.get("wangshilian").getLong("Height").longValue());
 
 				session.add(store, v);
 				session.flush();
 
 				assertEquals(false, v.isDirty());
-				assertEquals(180L, v.get("Height"));
+				assertEquals(180L, v.getLong("Height").longValue());
 			}
 		});
 

@@ -11,7 +11,7 @@ public class ManualIDGenerator implements IDGenerator {
 
 	@Override
 	public Long nextValue(Entity data) {
-		return data.get("ID");
+		return data.getLong("ID");
 	}
 
 	@Override
@@ -24,7 +24,7 @@ public class ManualIDGenerator implements IDGenerator {
 
 	@Override
 	public Long nextValue(Entity data, Long seed) {
-        return data.get("ID");
+        return data.getLong("ID");
 	}
 
 }

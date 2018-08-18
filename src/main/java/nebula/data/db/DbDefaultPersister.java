@@ -3,6 +3,7 @@ package nebula.data.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +53,11 @@ class DbDefaultPersister<T> implements DbPersister<T> {
 		SQL_MAX_ID = helper.builderMaxId();
 
 		if (!type.getAttrs().containsKey(Type.LEGACY)) {
-			DBSchemaMerger.ensureDBSchema(dbconfig, helper);
+			try (Connection con = dbconfig.openConnection()) {
+				DBSchemaMerger.ensureDBSchema(con, helper);
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
 		}
 	}
 

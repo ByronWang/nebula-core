@@ -122,7 +122,7 @@ public class DbDefaultDataExecutorTest extends TestCase {
 
 		data = dbExec.get("wangshilian");
 
-		assertEquals(10L, data.get("Age"));
+		assertEquals(10L, data.getLong("Age").longValue());
 
 		assertNotNull(data);
 
