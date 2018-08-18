@@ -160,10 +160,10 @@ public abstract class DbConfiguration {
 		DbPersister<T> executor = null;
 
 		DbSqlHelper helper = builderSQLHelper(type);
-		BO2DBSerializer<T> serializer = null;
+		RowMapper<T> serializer = null;
 		if (clz == Entity.class) {
-			BO2DBSerializer<Entity> entitySerializer = helper.getEntitySerializer();
-			serializer = (BO2DBSerializer<T>) entitySerializer;
+			RowMapper<Entity> entitySerializer = helper.getEntitySerializer();
+			serializer = (RowMapper<T>) entitySerializer;
 		}
 
 		switch (type.getStandalone()) {
@@ -188,10 +188,10 @@ public abstract class DbConfiguration {
 		DbPersister<T> executor = null;
 
 		DbSqlHelper helper = builderSQLHelper(type);
-		BO2DBSerializer<T> serializer = null;
+		RowMapper<T> serializer = null;
 		if (clz == Entity.class) {
-			BO2DBSerializer<Entity> entitySerializer = helper.getEntitySerializer();
-			serializer = (BO2DBSerializer<T>) entitySerializer;
+			RowMapper<Entity> entitySerializer = helper.getEntitySerializer();
+			serializer = (RowMapper<T>) entitySerializer;
 		}
 
 		switch (type.getStandalone()) {

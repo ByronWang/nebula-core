@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import nebula.data.Entity;
-import nebula.data.db.BO2DBSerializer;
+import nebula.data.db.RowMapper;
 import nebula.data.impl.EditableEntity;
 
-public class EntityFieldSerializer extends DefaultFieldSerializer<Entity> implements BO2DBSerializer<Entity> {
+public class EntityFieldSerializer extends DefaultFieldSerializer<Entity> implements RowMapper<Entity> {
 
 	final List<DefaultFieldSerializer<?>> fieldSerializer;
 
@@ -77,12 +77,12 @@ public class EntityFieldSerializer extends DefaultFieldSerializer<Entity> implem
 	}
 
 	@Override
-	public EditableEntity fromDb(ResultSet result) throws Exception {
+	public EditableEntity map(ResultSet result) throws Exception {
 		return this.toEntity(result);
 	}
 
 	@Override
-	public int toDb(PreparedStatement prepareStatement, Entity entity) throws Exception {
+	public int push(PreparedStatement prepareStatement, Entity entity) throws Exception {
 		return this.fromEntity(prepareStatement, entity);
 	}
 

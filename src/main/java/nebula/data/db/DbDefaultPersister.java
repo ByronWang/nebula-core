@@ -28,7 +28,7 @@ class DbDefaultPersister<T> implements DbPersister<T> {
 	final protected DbConfiguration dbconfig;
 	final private DbSqlHelper helper;
 
-	final BO2DBSerializer<T> serializer;
+	final RowMapper<T> serializer;
 
 	final private String SQL_GET;
 	final private String SQL_INSERT;
@@ -37,7 +37,7 @@ class DbDefaultPersister<T> implements DbPersister<T> {
 	final private String SQL_LIST;
 	final private String SQL_MAX_ID;
 
-	public DbDefaultPersister(DbConfiguration dbconfig, Type type, DbSqlHelper helper, BO2DBSerializer<T> serializer) {
+	public DbDefaultPersister(DbConfiguration dbconfig, Type type, DbSqlHelper helper, RowMapper<T> serializer) {
 		super();
 		this.dbconfig = dbconfig;
 		this.helper = helper;
@@ -180,7 +180,7 @@ class DbDefaultPersister<T> implements DbPersister<T> {
 			List<T> list = new ArrayList<T>();
 
 			while (res.next()) {
-				T v = serializer.fromDb(res);
+				T v = serializer.map(res);
 				list.add(v);
 			}
 
@@ -210,7 +210,7 @@ class DbDefaultPersister<T> implements DbPersister<T> {
 			conn = dbconfig.openConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
-			int pos = serializer.toDb(pstmt, v);
+			int pos = serializer.push(pstmt, v);
 
 			for (int i = 0; i < keys.length; i++) {
 				pstmt.setObject(pos + i, keys[i]);
