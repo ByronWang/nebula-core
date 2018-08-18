@@ -1,0 +1,5 @@
+type Company {
+	!Name;
+	*FullName Name;
+	Description Name;
+};

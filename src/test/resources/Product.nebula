@@ -1,0 +1,13 @@
+type Product{
+!!ID;
+!Name;
+?Description;
+Country|国家 Name;
+ProductKind|详细分类;
+Expected-Price|预想价格;
+Brand|品牌 Name;
+?Image|图片;
+Count;
+Price;
+?Extends Code;
+}

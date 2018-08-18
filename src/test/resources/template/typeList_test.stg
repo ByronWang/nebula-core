@@ -1,0 +1,24 @@
+type(type) ::= <<
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th class="id">#</th>$type.fields,type : field_th()$
+      </tr>
+    </thead>
+    <tbody>
+      <tr x-ng-repeat="data in datalist | filter:query | orderBy:orderProp">
+        <td class="id">{{$"\$"$index+1}}</td>
+      </tr>
+    </tbody>
+  </table>
+>>
+
+field_th(field,type) ::= <<    $if( !field.array && !field.ignorable)$$if(field.byVal)$
+           $\t$<th>$field.displayName$</th>
+        $elseif(field.inline)$
+                   $field.type.fields,field : { subfield,field | $if(subfield.key )$$\t$<th>$field.displayName$&nbsp;$subfield.displayName$</th>$endif$  }$
+        $elseif(field.byRef)$
+                   $\t$<th>$field.displayName$</th>
+        $elseif(field.cascade)$
+                   $\t$<th>$field.displayName$</th>
+        $endif$    $endif$ >>

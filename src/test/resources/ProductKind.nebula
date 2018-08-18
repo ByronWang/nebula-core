@@ -1,0 +1,4 @@
+type ProductKind{
+	!!ID;
+*Name;
+}

@@ -1,0 +1,7 @@
+tx ProductPrice|产品价格{
+!!ID;
+@Attach Product;
+!From-Date;
+?To-Date;
+@Attach Price;
+}

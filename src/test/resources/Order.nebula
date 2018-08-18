@@ -1,0 +1,5 @@
+@Complex
+tx Order{
+@IDGenerationStrategy("time") !ID;
+@Expand *&Items[] OrderItem;
+}

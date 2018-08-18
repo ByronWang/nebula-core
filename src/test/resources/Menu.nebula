@@ -1,0 +1,5 @@
+type Menu{
+  !Name; 
+  Icon;
+  URL;
+};

@@ -1,0 +1,2 @@
+article(content,type) ::= <<  article:$type.displayName$ **** $content$ **** >>
+simpleAttachedHome(attachedType,type) ::= << simpleAttachedHome: $type.displayName$ >>

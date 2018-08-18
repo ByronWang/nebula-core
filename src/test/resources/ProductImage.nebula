@@ -1,0 +1,5 @@
+type ProductImage|产品图片{
+!!ID;
+@Attach Product;
+Image|图片地址;
+}

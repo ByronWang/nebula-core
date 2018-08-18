@@ -1,0 +1,6 @@
+type TestRef {
+	!Key				Name;
+	*Core				Name;
+	Require				Name;
+	Ignore				Name;
+};

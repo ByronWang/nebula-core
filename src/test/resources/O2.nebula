@@ -1,0 +1,5 @@
+tx O2{
+@IDGenerationStrategy("time") !ID;
+Name;
+@Expand *&Items[] OrderItem;
+}

@@ -1,0 +1,8 @@
+tx OrderItemFlow {
+    !ID;
+    *Actor|操作者 User;
+    @Attach OrderItem;
+    ?Extends Code;
+    Status|状态 OrderStatus;
+    Action Name;
+}

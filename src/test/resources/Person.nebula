@@ -1,0 +1,21 @@
+type Person {
+	!Name;
+	Birthday;	/*Age = Today.year - BirthdayDay.year;*/
+	Height;
+	Age;
+	Sex;
+	Detail{
+		!Name;
+		!Age;
+	};	
+	Company;	
+	?Roles1[]				Text;	
+	Roles2[1..]				Long;
+	Roles3[..5]				Date;	
+	Roles4[1..5]			Time;		
+	Education[..5]{
+		DateFrom Date;
+		DateTo Date;
+		School Text;
+	};
+};

@@ -1,0 +1,4 @@
+type OrderStatus|状态{
+  !ID;
+  *Name;
+}

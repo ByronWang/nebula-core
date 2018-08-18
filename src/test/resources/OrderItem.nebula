@@ -1,0 +1,17 @@
+tx OrderItem {
+!ID;
+@Attach Order;
+@Expand *&Product;
+Amount;
+?Comment;
+DeadLine|代购期限 Date;
+?Address|收件地址{
+Province|省 Name;
+City|市 Name;
+Area|区 Name;
+Address|详细地址 String;
+Zip;
+Contact Name;
+Phone;
+};
+}

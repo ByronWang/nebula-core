@@ -1,0 +1,55 @@
+import "layout.stg" 
+
+type(type) ::= << $ type :  { type |   
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        $\t$<th class="id">#</th> $type.fields,type : field_th()$
+      </tr>
+    </thead>
+    <tbody>
+      <tr x-ng-repeat="data in datalist | filter:query | orderBy:orderProp">
+        <td class="id">{{$"\$"$index+1\}\}</td>$type.fields,type : field_td()$
+      </tr>
+    </tbody>
+  </table>
+}  : article(type) $
+>>
+
+field_th(field,type) ::= <<$if( !field.array && !field.ignorable)$ $if(field.byVal)$
+	    $\t$<th>$field.displayName$</th>
+	$elseif(field.inline)$
+	    $field.type.fields,field : { subfield,field | $if(subfield.key )$$\t$<th>$field.displayName$&nbsp;$subfield.displayName$</th>$endif$  }$
+	$elseif(field.byRef)$
+	    $\t$<th>$field.displayName$</th>
+	$elseif(field.cascade)$
+	    $\t$<th>$field.displayName$</th>
+	$endif$    
+$endif$ >>
+
+field_td(field,pType) ::= << $if( !field.array && !field.ignorable)$$if(field.byVal)$                 $field,pType : field_td_ByVal()$
+$elseif(field.inline)$           $field.type.fields,field : field_td_Inline()$
+$elseif(field.byRef)$
+         $field,pType : field_td_ByRef()$
+$elseif(field.cascade)$       $field,pType : field_td_Cascade()$
+$endif$$endif$>>
+
+field_td_ByVal(field,parentType) ::= << $if(field.key)$
+    $\t$<td><a href="#/d/$parentType.name$/{{data.$parentType.keyField.name$}}">{{data["$field.name$"]}}</a></td>
+$elseif(field.core)$
+    $\t$<td><a href="#/d/$parentType.name$/{{data.$parentType.keyField.name$}}">{{data["$field.name$"]}}</a></td>
+$else$
+    $\t$<td>{{data["$field.name$"]}}</td>
+$endif$>> 
+
+field_td_Inline(field,pField) ::= <<$if(field.key || field.core)$
+    $\t$<td>{{data["$pField.name$.$field.name$"]}}</td>$endif$ >>
+
+field_td_ByRef(field,parentType) ::= <<
+    $\t$<td>$field.type.fields,field : field_td_ByRef_object()$</td> >>
+
+field_td_Cascade(field,parentType) ::= <<
+    $\t$<td>$field.type.fields,field : field_td_ByRef_object()$</td> >>
+
+field_td_ByRef_object(field,pField) ::= <<$if(field.key)${{data["$pField.name$.$field.name$"]}}$elseif(field.core)$&nbsp;{{data["$pField.name$.$field.name$"] }}$endif$	>>
+
