@@ -53,11 +53,9 @@ class DbDefaultPersister<T> implements DbPersister<T> {
 		SQL_MAX_ID = helper.builderMaxId();
 
 		if (!type.getAttrs().containsKey(Type.LEGACY)) {
-			try (Connection con = dbconfig.openConnection()) {
-				DBSchemaMerger.ensureDBSchema(con, helper);
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
+			Connection con = dbconfig.openConnection();
+			DBSchemaMerger.ensureDBSchema(con, helper);
+			dbconfig.closeConnection(con);
 		}
 	}
 
