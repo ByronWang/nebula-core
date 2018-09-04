@@ -23,6 +23,7 @@ import nebula.data.schema.DbSqlHelper;
 public class DBSchemaMerger {
 	static final Log logroot = LogFactory.getLog(DBSchemaMerger.class);
 
+	@SuppressWarnings("resource")
 	public static void ensureDBSchema(Connection conn, DbSqlHelper helper) {
 		Statement statement = null;
 		boolean exist = false;
