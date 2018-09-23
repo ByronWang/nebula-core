@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Function;
 
@@ -21,7 +21,7 @@ import nebula.data.schema.DbColumn;
 import nebula.data.schema.DbSqlHelper;
 
 public class DBSchemaMerger {
-	static final Log logroot = LogFactory.getLog(DBSchemaMerger.class);
+	static final Logger logroot = LoggerFactory.getLogger(DBSchemaMerger.class);
 
 	@SuppressWarnings("resource")
 	public static void ensureDBSchema(Connection conn, DbSqlHelper helper) {
@@ -135,7 +135,7 @@ public class DBSchemaMerger {
 				rs.close();
 				conn.commit();
 
-				// 获得主键的信息
+				// 获得主键的信�?
 				rs = conn.getMetaData()
 					.getPrimaryKeys(metaData.getCatalogName(1), metaData.getSchemaName(1), metaData.getTableName(1));
 				while (rs.next()) {
@@ -308,7 +308,7 @@ public class DBSchemaMerger {
 			}
 
 		} catch (SQLException e) {
-			logroot.trace(e);
+			logroot.trace(e.toString());
 			throw new RuntimeException(e);
 		} finally {
 			try {

@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Joiner;
 
@@ -17,14 +17,14 @@ import nebula.data.schema.RowMapper;
 import nebula.lang.Type;
 
 /**
- * 单表持久化
+ * 单表持久�?
  * 
  * @author wanglocal
  * 
  * @param <T>
  */
 class DbDefaultPersister<T> implements DbPersister<T> {
-	final Log log;
+	final Logger log;
 	final protected DbConfiguration dbconfig;
 	final private DbSqlHelper helper;
 
@@ -43,7 +43,7 @@ class DbDefaultPersister<T> implements DbPersister<T> {
 		this.helper = helper;
 		this.serializer = serializer;
 
-		log = LogFactory.getLog(DbDefaultPersister.class + "_" + type.getName());
+		log = LoggerFactory.getLogger(DbDefaultPersister.class + "_" + type.getName());
 
 		SQL_GET = helper.builderGet();
 		SQL_INSERT = helper.builderInsert();

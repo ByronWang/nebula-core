@@ -20,12 +20,12 @@ import nebula.data.schema.TypeNames;
 import nebula.lang.RawTypes;
 import nebula.lang.Type;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class DbConfiguration {
 
-	private static final Log log = LogFactory.getLog(DbConfiguration.class);
+	private static final Logger log = LoggerFactory.getLogger(DbConfiguration.class);
 	protected final String driverClass;
 	protected final String url;
 	protected final String userName;
@@ -231,7 +231,7 @@ public abstract class DbConfiguration {
 			log.debug("== database disconnect");
 		} catch (SQLException e) {
 			log.debug("Exception When disconnect db");
-			log.debug(e);
+			log.debug(e.toString());
 		}
 	}
 
@@ -266,11 +266,11 @@ public abstract class DbConfiguration {
 //	                 clientTableInfos.add(info);
 //	            }
 //	            
-//	            //获得主键的信息
+//	            //获得主键的信�?
 //	            resultSet = connection.getMetaData().getPrimaryKeys(null, null, tableName);
 //	            while(resultSet.next()){
 //	                 String  primaryKey = resultSet.getString("COLUMN_NAME");
-//	                 //设置是否为主键
+//	                 //设置是否为主�?
 //	                 for (DsClientColumnInfo dsClientColumnInfo : clientTableInfos) {
 //	                    if(primaryKey != null && primaryKey.equals(dsClientColumnInfo.getClientColumnCode()))
 //	                        dsClientColumnInfo.setIsParmaryKey("true");
@@ -283,7 +283,7 @@ public abstract class DbConfiguration {
 //	            resultSet = connection.getMetaData().getImportedKeys(null, null, tableName);
 //	            while(resultSet.next()){
 //	                String  exportedKey = resultSet.getString("FKCOLUMN_NAME");
-//	                //设置是否是外键
+//	                //设置是否是外�?
 //	                 for (DsClientColumnInfo dsClientColumnInfo : clientTableInfos) {
 //	                        if(exportedKey != null && exportedKey.equals(dsClientColumnInfo.getClientColumnCode()))
 //	                            dsClientColumnInfo.setIsImportedKey("true");
@@ -295,21 +295,21 @@ public abstract class DbConfiguration {
 //	            
 //	        } catch (Exception e) {
 //	            e.printStackTrace();
-//	            throw new RuntimeException("获取字段信息的时候失败，请将问题反映到维护人员。" + e.getMessage(), e);
+//	            throw new RuntimeException("获取字段信息的时候失败，请将问题反映到维护人员�??" + e.getMessage(), e);
 //	        } finally{
 //	            if(resultSet != null)
 //	                try {
 //	                    resultSet.close();
 //	                } catch (SQLException e) {
 //	                    e.printStackTrace();
-//	                       throw new DataAccessFailureException("关闭结果集resultSet失败。",e);
+//	                       throw new DataAccessFailureException("关闭结果集resultSet失败�?",e);
 //	                }finally{
 //	                    if(connection != null)
 //	                        try {
 //	                            connection.close();
 //	                        } catch (SQLException e) {
 //	                            e.printStackTrace();
-//	                               throw new DataAccessFailureException("关闭连接connection失败。",e);
+//	                               throw new DataAccessFailureException("关闭连接connection失败�?",e);
 //	                        }
 //	                }
 //	        }

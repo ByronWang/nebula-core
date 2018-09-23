@@ -14,11 +14,11 @@ import nebula.lang.Field;
 import nebula.lang.Type;
 import nebula.lang.TypeStandalone;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DbDataRepos extends DefaultDataRepos {
-    private Log log = LogFactory.getLog(this.getClass());
+    private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	final DbConfiguration dbConfig;
 
@@ -72,7 +72,7 @@ public class DbDataRepos extends DefaultDataRepos {
                    
                     changes.clear();
                 } catch (SQLException e) {
-                    log.error(e);
+                    log.error(e.toString());
                     throw new RuntimeException(e);
                 } finally {
                 	dbConfig.closeConnection(conn);

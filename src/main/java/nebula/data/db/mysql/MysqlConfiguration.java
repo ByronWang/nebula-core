@@ -6,8 +6,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -19,7 +19,7 @@ import nebula.lang.RawTypes;
 import nebula.lang.Type;
 
 public class MysqlConfiguration extends DbConfiguration {
-	private static final Log log = LogFactory.getLog(MysqlConfiguration.class);
+	private static final Logger log = LoggerFactory.getLogger(MysqlConfiguration.class);
 	ComboPooledDataSource dataSource;
 
 	public MysqlConfiguration(String driverClass, String url, String userName, String password) {

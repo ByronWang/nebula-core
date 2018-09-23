@@ -5,11 +5,11 @@ import java.sql.SQLException;
 
 import nebula.data.db.DbConfiguration;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DerbyConfiguration extends DbConfiguration {
-	private static final Log log = LogFactory.getLog(DerbyConfiguration.class);
+	private static final Logger log = LoggerFactory.getLogger(DerbyConfiguration.class);
 
 	public DerbyConfiguration(String driverClass, String url, String userName, String password) {
 		super(driverClass, url, userName, password);
