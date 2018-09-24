@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nebula.data.Entity;
-import nebula.data.impl.EditableEntity;
+import nebula.data.entity.EditableEntity;
 
 public class EntityListFieldSerializer extends FieldMapperFactory<List<Entity>> {
 	final List<ListTypeAdapter<?>> adapteres;

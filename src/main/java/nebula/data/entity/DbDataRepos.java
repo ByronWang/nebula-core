@@ -1,4 +1,4 @@
-package nebula.data.impl;
+package nebula.data.entity;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -9,6 +9,11 @@ import nebula.data.Editable;
 import nebula.data.Entity;
 import nebula.data.TransactionCaller;
 import nebula.data.db.DbConfiguration;
+import nebula.data.entity.DefaultDataRepos;
+import nebula.data.entity.EntityDataStore;
+import nebula.data.impl.DataStoreAdv;
+import nebula.data.impl.IdReaderBuilder;
+import nebula.data.impl.TypeDatastore;
 import nebula.data.schema.DbPersister;
 import nebula.lang.Field;
 import nebula.lang.Type;
@@ -30,7 +35,7 @@ public class DbDataRepos extends DefaultDataRepos {
 
 	@Override
 	@SuppressWarnings("rawtypes")
-	protected DataStoreEx loadDataStore(String name, Type type) {
+	protected DataStoreAdv loadDataStore(String name, Type type) {
 		switch (type.getStandalone()) {
 		case Flow:
 			return new EntityDataStore(IdReaderBuilder.getIDReader(type), this, type);

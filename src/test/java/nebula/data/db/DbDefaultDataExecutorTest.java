@@ -13,7 +13,7 @@ import junit.framework.TestCase;
 import nebula.data.DataRepos;
 import nebula.data.DataStore;
 import nebula.data.Entity;
-import nebula.data.impl.EditableEntity;
+import nebula.data.entity.EditableEntity;
 import nebula.data.schema.DbPersister;
 import nebula.data.schema.DbSqlHelper;
 import nebula.lang.RawTypes;

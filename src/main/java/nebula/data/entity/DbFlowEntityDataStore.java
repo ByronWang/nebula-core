@@ -1,4 +1,4 @@
-package nebula.data.impl;
+package nebula.data.entity;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -6,14 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import nebula.data.DataRepos;
 import nebula.data.Entity;
+import nebula.data.entity.EditableEntity;
+import nebula.data.entity.EntityDataStore;
+import nebula.data.entity.EntityImp;
+import nebula.data.impl.DataStoreAdv;
+import nebula.data.impl.IDGenerator;
+import nebula.data.impl.IdReaderBuilder;
 import nebula.data.schema.DbPersister;
 import nebula.lang.Field;
 import nebula.lang.NebulaNative;
 import nebula.lang.Type;
 import nebula.lang.TypeStandalone;
 
-public class DbTransactionEntityDataStore extends EntityDataStore {
+public class DbFlowEntityDataStore extends EntityDataStore {
 
 	final DbPersister<Entity> db;
 
@@ -23,7 +30,7 @@ public class DbTransactionEntityDataStore extends EntityDataStore {
 
 	final List<Field> expands = new ArrayList<Field>();
 
-	DbTransactionEntityDataStore(final DbDataRepos dataRepos, Type type, final DbPersister<Entity> exec) {
+	DbFlowEntityDataStore(final DbDataRepos dataRepos, Type type, final DbPersister<Entity> exec, final DataRepos repos) {
 		super(IdReaderBuilder.getIDReader(type), dataRepos, type);
 		this.db = exec;
 
@@ -42,7 +49,6 @@ public class DbTransactionEntityDataStore extends EntityDataStore {
 				expands.add(f);
 			}
 		}
-
 		this.attachField = attachField;
 
 		key = checkNotNull(localKey).getName();
@@ -110,7 +116,7 @@ public class DbTransactionEntityDataStore extends EntityDataStore {
 	class DbEntity extends EntityImp {
 		final int index;
 
-		DbEntity(DataStoreEx<Entity> store, Map<String, Object> data, int index) {
+		DbEntity(DataStoreAdv<Entity> store, Map<String, Object> data, int index) {
 			super(store, data);
 			this.index = index;
 		}
@@ -134,14 +140,14 @@ public class DbTransactionEntityDataStore extends EntityDataStore {
 
 	private EntityImp loadin(DbEntity sourceEntity, EditableEntity newEntity) {
 		newEntity.put(Entity.PRIMARY_KEY, String.valueOf((Long) newEntity.get(key)));
-		
+
 		for (Field f : this.expands) {
 			if (!f.isArray()) { // TODO
 				Entity ex = this.dataRepos.define(Long.class, Entity.class, f.getName()).get(newEntity.get(f.getName() + "ID"));
 				newEntity.put(f.getName(), ex);
 			}
 		}
-		
+
 		DbEntity inner = new DbEntity(this, newEntity.newData, sourceEntity.index);
 		NebulaNative.onLoad(null, dataRepos, newEntity, super.type);
 		this.values.add(inner);

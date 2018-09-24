@@ -1,4 +1,4 @@
-package nebula.data.impl;
+package nebula.data.entity;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -10,6 +10,9 @@ import nebula.data.DataStore;
 import nebula.data.Entity;
 import nebula.data.db.DBConfig;
 import nebula.data.db.DbConfiguration;
+import nebula.data.entity.DbDataRepos;
+import nebula.data.entity.EditableEntity;
+import nebula.data.impl.TypeDatastore;
 import nebula.lang.SystemTypeLoader;
 
 public class DbComplexEntityDataPersisterTest extends TestCase {

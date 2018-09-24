@@ -1,4 +1,4 @@
-package nebula.data.impl;
+package nebula.data.entity;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -6,6 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import nebula.data.Entity;
+import nebula.data.entity.EditableEntity;
+import nebula.data.entity.EntityDataStore;
+import nebula.data.entity.EntityImp;
+import nebula.data.impl.DataStoreAdv;
+import nebula.data.impl.IDGenerator;
+import nebula.data.impl.IdReaderBuilder;
 import nebula.data.schema.DbPersister;
 import nebula.lang.Field;
 import nebula.lang.NebulaNative;
@@ -108,7 +114,7 @@ public class DbMasterEntityDataStore extends EntityDataStore {
 	class DbEntity extends EntityImp {
 		final int index;
 
-		DbEntity(DataStoreEx<Entity> store, Map<String, Object> data, int index) {
+		DbEntity(DataStoreAdv<Entity> store, Map<String, Object> data, int index) {
 			super(store, data);
 			this.index = index;
 		}
